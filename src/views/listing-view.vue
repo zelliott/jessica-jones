@@ -1,0 +1,3 @@
+<template>
+  Single listing
+</template>
