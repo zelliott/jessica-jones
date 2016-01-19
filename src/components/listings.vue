@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div class="listings max-width">
     <listing
-      v-for="listing in listings"
+      v-for="(id, listing) in listings"
+      :id="id"
       :listing="listing">
     </listing>
   </div>
@@ -26,7 +27,7 @@ export default {
 
   data () {
     return {
-      listings: []
+      listings: ListingsStore.listings
     }
   },
 

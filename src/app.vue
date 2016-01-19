@@ -7,6 +7,7 @@
 
 <script>
 import Navbar from './components/navbar'
+import './styles/main.scss'
 
 export default {
   components: {
@@ -15,9 +16,3 @@ export default {
   replace: false
 }
 </script>
-
-<style>
-body {
-  font-family: Helvetica, sans-serif;
-}
-</style>

@@ -1,20 +1,14 @@
 <template>
   <div class="listing">
-    <a v-link="{ name: 'listing', params: { listingId: listing.id } }">{{ listing.title }}</a>
     <div>
-      {{ listing.description }}
+      <a class="listing-title" v-link="{ name: 'listing', params: { listingId: id } }">{{ listing.title }}</a>
     </div>
+    <div class="listing-timestamp">{{ listing.timestamp }}</div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['listing']
+  props: ['listing', 'id']
 }
 </script>
-
-<style>
-.listing {
-  padding: 20px;
-}
-</style>

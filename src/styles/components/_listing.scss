@@ -1,0 +1,17 @@
+.listing {
+  padding: 20px 0;
+
+  > div {
+    display: block;
+  }
+
+  .listing-title {
+    display: inline-block;
+    font-weight: 500;
+    padding: 5px 0;
+  }
+
+  .listing-timestamp {
+    color: #999;
+  }
+}

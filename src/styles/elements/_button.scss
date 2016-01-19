@@ -1,0 +1,20 @@
+button {
+  background: none;
+  border: none;
+  @include border-radius(5px);
+}
+
+.btn {
+  font-weight: 500;
+  padding: 10px 20px;
+}
+
+.btn-charcoal {
+  background: #333;
+  color: #fff;
+}
+
+.btn-hover-red:hover {
+  background: $red;
+  color: #fff;
+}

@@ -10,7 +10,7 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
+    extensions: ['', '.js', '.vue', '.css', '.scss'],
     alias: {
       'src': path.resolve(__dirname, '../src')
     }
@@ -40,6 +40,11 @@ module.exports = {
           limit: 10000,
           name: '[name].[ext]?[hash]'
         }
+      },
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass',
+        exclude: /node_modules/
       }
     ]
   },
