@@ -1,0 +1,44 @@
+.post-listing-view {
+  padding-top: 20px;
+
+  .form-title {
+    font-size: 20px;
+    font-weight: 500;
+    padding: 40px;
+  }
+
+  .form-description {
+    color: #bbb;
+    font-size: 15px;
+    padding: 0 40px;
+  }
+
+  form {
+    padding: 40px;
+
+    .form-group {
+      position: relative;
+      padding-top: 30px;
+      margin: 20px 0 40px 0;
+
+      label {
+        cursor: pointer;
+        display: block;
+        font-weight: 500;
+        font-size: 14px;
+        color: #999;
+        position: absolute;
+        top: 0;
+      }
+
+      input,
+      textarea {
+        display: block;
+      }
+    }
+
+    input:focus + label, textarea:focus + label {
+      color: $blue;
+    }
+  }
+}

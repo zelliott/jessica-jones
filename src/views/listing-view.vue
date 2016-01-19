@@ -1,5 +1,5 @@
 <template>
-  <div v-show="listing" class="listing-view max-width">
+  <div v-show="listing" class="listing-view view max-width">
     <div class="listing-title">{{ listing.title }}</div>
     <div class="listing-description">{{ listing.description }}</div>
     <div class="listing-timestamp">{{ listing.timestamp }}</div>

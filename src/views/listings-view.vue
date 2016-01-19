@@ -1,5 +1,7 @@
 <template>
-  <listings></listings>
+  <div class="listings-view view max-width">
+    <listings></listings>
+  </div>
 </template>
 
 <script>

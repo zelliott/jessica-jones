@@ -1,17 +1,39 @@
 .listing {
-  padding: 20px 0;
+  padding: 15px 20px;
 
   > div {
-    display: block;
-  }
-
-  .listing-title {
     display: inline-block;
-    font-weight: 500;
-    padding: 5px 0;
+    vertical-align: top;
   }
 
-  .listing-timestamp {
-    color: #999;
+  .listing-number {
+    margin-right: 20px;
+    width: 30px;
+    text-align: center;
+    padding: 5px 0;
+    font-weight: 500;
+    color: #ccc;
   }
+
+  .listing-content {
+    > div {
+      display: block;
+    }
+
+    .listing-title {
+      color: $blue;
+      display: inline-block;
+      font-weight: 500;
+      padding: 5px 0;
+    }
+
+    .listing-timestamp {
+      color: #bbb;
+      font-size: 14px;
+    }
+  }
+}
+
+.listing + .listing {
+  border-top: 1px solid #eee;
 }

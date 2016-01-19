@@ -1,8 +1,9 @@
 <template>
-  <div class="listings max-width">
+  <div class="listings">
     <listing
       v-for="(id, listing) in listings"
       :id="id"
+      :number="$index"
       :listing="listing">
     </listing>
   </div>

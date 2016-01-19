@@ -1,0 +1,16 @@
+textarea {
+  @include border-radius(5px);
+  border: 1px solid #ddd;
+  padding: 10px;
+  resize: none;
+  outline: none;
+  width: 600px;
+
+  &:hover {
+    border-color: #ccc;
+  }
+
+  &:focus {
+    border-color: $blue;
+  }
+}

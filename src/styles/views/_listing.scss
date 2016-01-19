@@ -1,20 +1,26 @@
 .listing-view {
-  margin-top: 40px;
+  padding-top: 20px;
+
+  > div {
+    padding: 20px 40px;
+  }
 
   .listing-title {
     font-size: 20px;
     font-weight: 500;
-    margin-bottom: 40px;
   }
 
   .listing-description {
     color: #999;
-    font-size: 20px;
-    margin-bottom: 40px;
+    font-size: 15px;
   }
 
   .listing-timestamp {
     color: #999;
-    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  button {
+    margin: 20px 40px 40px 40px;
   }
  }
