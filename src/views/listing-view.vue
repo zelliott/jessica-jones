@@ -3,10 +3,10 @@
     <div class="listing-timestamp">{{ listing.timestamp | fromNow }}</div>
     <div class="listing-title">{{ listing.title }}</div>
     <div class="listing-description">{{ listing.description }}</div>
-    <button class="btn btn-charcoal btn-hover-red" @click="delete">
+    <!-- <button class="btn btn-charcoal btn-hover-red" @click="delete">
       <span class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
       Delete
-    </button>
+    </button> -->
   </div>
   <div v-show="noListing" class="listing-view view max-width">
     <div class="no-listing">

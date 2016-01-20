@@ -8,7 +8,8 @@ class ListingsStore extends EventEmitter {
 
   constructor () {
     super()
-    this._listingsPerPage = 10
+    this._listingsPerPage = 2
+    this._listingsCount = 0
     this._listings = []
 
     db.child('listings').on('value', (snapshot) => {
@@ -26,6 +27,8 @@ class ListingsStore extends EventEmitter {
         })
         .reverse()
         .value()
+
+      this._listingsCount = this._listings.length
 
       this.emitChange()
     })
@@ -53,6 +56,10 @@ class ListingsStore extends EventEmitter {
 
   get listings () {
     return this._listings
+  }
+
+  get listingsCount () {
+    return this._listingsCount
   }
 
   get listingsPerPage () {

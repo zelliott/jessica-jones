@@ -1,5 +1,14 @@
 <template>
   <div class="listings-view view max-width">
+
+    <div class="listings-loading" v-show="loading">
+      Loading...
+    </div>
+
+    <div class="no-listings" v-show="!loading && listings.length === 0">
+      No listings
+    </div>
+
     <div class="listings">
       <listing
         v-for="(id, listing) in listings"
@@ -8,14 +17,15 @@
       </listing>
     </div>
 
-    <div class="listings-pagination clearfix">
+    <div class="listings-pagination clearfix" v-show="!loading && listings.length !== 0">
       <a v-show="page > 1"
         v-link="{ name: 'listings', params: { page: page - 1 } }"
         class="btn btn-blue-text">
         Previous
       </a>
       <a v-link="{ name: 'listings', params: { page: page + 1 } }"
-        class="btn btn-blue-text right">
+        class="btn btn-blue-text right"
+        v-show="listingsCount > this.listingsPerPage * page">
         Next
       </a>
     </div>
@@ -34,7 +44,10 @@ export default {
   data () {
     return {
       page: 1,
-      listings: []
+      listings: [],
+      listingsCount: 0,
+      listingsPerPage: ListingsStore.listingsPerPage,
+      loading: true
     }
   },
 
@@ -50,7 +63,9 @@ export default {
     data ({ to }) {
       return {
         page: +to.params.page,
-        listings: ListingsStore.listingsByPage(+to.params.page)
+        listings: ListingsStore.listingsByPage(+to.params.page),
+        listingsCount: ListingsStore.listingsCount,
+        loading: false
       }
     }
   },
@@ -58,12 +73,14 @@ export default {
   methods: {
     onListingsChange () {
       this.listings = ListingsStore.listingsByPage(this.page)
+      this.listingsCount = ListingsStore.listingsCount
+      this.loading = false
     }
   },
 
   filters: {
     formatListingNumber (i) {
-      return (this.page - 1) * ListingsStore.listingsPerPage + i + 1
+      return (this.page - 1) * this.listingsPerPage + i + 1
     }
   }
 }
