@@ -32,7 +32,8 @@ button {
   background: #fff;
   color: $blue;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $light-blue;
   }
 }
@@ -41,7 +42,8 @@ button {
   background: $green;
   color: #fff;
 
-  &:hover {
+  &:hover,
+  &:focus {
     background: $dark-green;
   }
 }

@@ -8,28 +8,28 @@ class ListingsStore extends EventEmitter {
 
   constructor () {
     super()
-    this._listingsPerPage = 2
+    this._listingsPerPage = 10
     this._listingsCount = 0
+    this._loading = true
     this._listings = []
 
     db.child('listings').on('value', (snapshot) => {
 
       if (_.isNull(snapshot.val())) {
         this._listings = []
-        return
+      } else {
+        this._listings = _
+          .chain(snapshot.val())
+          .map((listing, id) => {
+            listing.id = id
+            return listing
+          })
+          .reverse()
+          .value()
       }
 
-      this._listings = _
-        .chain(snapshot.val())
-        .map((listing, id) => {
-          listing.id = id
-          return listing
-        })
-        .reverse()
-        .value()
-
       this._listingsCount = this._listings.length
-
+      this._loading = false
       this.emitChange()
     })
 
@@ -64,6 +64,10 @@ class ListingsStore extends EventEmitter {
 
   get listingsPerPage () {
     return this._listingsPerPage
+  }
+
+  get loading () {
+    return this._loading
   }
 }
 

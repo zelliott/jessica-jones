@@ -5,8 +5,8 @@
       Loading...
     </div>
 
-    <div class="no-listings" v-show="!loading && listings.length === 0">
-      No listings
+    <div class="no-listings" v-show="!loading && listingsCount === 0">
+      No listings.  Post one!
     </div>
 
     <div class="listings">
@@ -17,7 +17,7 @@
       </listing>
     </div>
 
-    <div class="listings-pagination clearfix" v-show="!loading && listings.length !== 0">
+    <div class="listings-pagination clearfix" v-show="!loading && listingsCount > listingsPerPage">
       <a v-show="page > 1"
         v-link="{ name: 'listings', params: { page: page - 1 } }"
         class="btn btn-blue-text">
@@ -45,9 +45,9 @@ export default {
     return {
       page: 1,
       listings: [],
-      listingsCount: 0,
+      listingsCount: ListingsStore.listingsCount,
       listingsPerPage: ListingsStore.listingsPerPage,
-      loading: true
+      loading: ListingsStore.loading
     }
   },
 
@@ -65,7 +65,7 @@ export default {
         page: +to.params.page,
         listings: ListingsStore.listingsByPage(+to.params.page),
         listingsCount: ListingsStore.listingsCount,
-        loading: false
+        loading: ListingsStore.loading
       }
     }
   },
@@ -74,7 +74,7 @@ export default {
     onListingsChange () {
       this.listings = ListingsStore.listingsByPage(this.page)
       this.listingsCount = ListingsStore.listingsCount
-      this.loading = false
+      this.loading = ListingsStore.loading
     }
   },
 
