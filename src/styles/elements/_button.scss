@@ -6,6 +6,7 @@ button {
 }
 
 .btn {
+  @include border-radius(5px);
   font-weight: 500;
   padding: 10px 20px;
 
@@ -20,6 +21,20 @@ button {
 .btn-charcoal {
   background: #333;
   color: #fff;
+}
+
+.btn-gray {
+  background: #eee;
+  color: #999;
+}
+
+.btn-blue-text {
+  background: #fff;
+  color: $blue;
+
+  &:hover {
+    background: $light-blue;
+  }
 }
 
 .btn-green {

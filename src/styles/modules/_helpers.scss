@@ -20,3 +20,21 @@
 .oi-r {
   margin-left: 10px;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}

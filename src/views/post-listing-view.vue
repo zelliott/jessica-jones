@@ -2,8 +2,16 @@
   <div class="post-listing-view view max-width">
     <div class="form-title">Post a listing</div>
     <div class="form-description">
-      Here is a description about posting a listing.  It contains
-      lots of useful information and is helpful to read.
+      Fill out the form below to post a job listing to Penn students.
+      <br \>
+      <br \>
+      Some tips when posting a job listing:
+
+      <ul>
+       <li>Keep it short, sweet, and to the point.</li>
+       <li>Clearly describe a summary of the job / project.</li>
+       <li>Include some contact information (email, phone, or both).</li>
+      </ul>
     </div>
     <form>
 
@@ -19,7 +27,7 @@
           type="text"
           v-model="title"
           placeholder="Title"/>
-        <label for="title">Title</label>
+        <label for="title">Title *</label>
       </div>
       <div class="form-group">
         <textarea
@@ -27,7 +35,7 @@
           v-model="description"
           placeholder="Description">
         </textarea>
-        <label for="description">Description</label>
+        <label for="description">Description *</label>
       </div>
       <button class="btn btn-green" type="submit" @click="post">
         <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
@@ -68,7 +76,7 @@ export default {
           this.$route.router.go({
             name: 'listing',
             params: {
-              listingId: id
+              id: id
             }
           })
         }).catch((error) => {

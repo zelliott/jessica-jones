@@ -11,10 +11,14 @@
     color: #bbb;
     font-size: 15px;
     padding: 0 40px;
+
+    ul {
+      line-height: 25px;
+    }
   }
 
   form {
-    padding: 40px;
+    padding: 10px 40px 40px 40px;
 
     .form-warning {
       background: $light-yellow;
@@ -47,6 +51,10 @@
       textarea {
         display: block;
         width: 600px;
+      }
+
+      textarea {
+        height: 100px;
       }
     }
 

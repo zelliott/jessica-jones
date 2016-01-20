@@ -18,23 +18,22 @@ router.map({
     name: 'default',
     component: DefaultView
   },
-  '/listings': {
+  '/listings/:page': {
     name: 'listings',
-    component: ListingsView,
-    subRoutes: {
-      '/page/:page': {
-        component: ListingsView
-      },
-      '/listings/:listingId': {
-        name: 'listing',
-        component: ListingView
-      }
-    }
+    component: ListingsView
+  },
+  '/listing/:id': {
+    name: 'listing',
+    component: ListingView
   },
   '/post': {
     name: 'post',
     component: PostListingView
   }
+})
+
+router.redirect({
+  '/listings': '/listings/1'
 })
 
 router.start(App, 'body')

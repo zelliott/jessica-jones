@@ -2,12 +2,13 @@ import { EventEmitter } from 'events'
 import db from '../../server/db.js'
 import _ from 'lodash'
 
-const LISTINGS_PER_PAGE = 5
+const CHANGE = 'change'
 
 class ListingsStore extends EventEmitter {
 
   constructor () {
     super()
+    this._listingsPerPage = 10
     this._listings = []
 
     db.child('listings').on('value', (snapshot) => {
@@ -25,18 +26,37 @@ class ListingsStore extends EventEmitter {
         })
         .reverse()
         .value()
+
+      this.emitChange()
     })
+
+  }
+
+  emitChange () {
+    this.emit(CHANGE)
+  }
+
+  addChangeListener (cb) {
+    this.on(CHANGE, cb)
+  }
+
+  removeChangeListener (cb) {
+    this.removeListener(CHANGE, cb)
+  }
+
+  listingsByPage (page = 1) {
+    let start = (this._listingsPerPage * (page - 1))
+    let end = (page * this._listingsPerPage)
+
+    return this._listings.slice(start, end)
   }
 
   get listings () {
     return this._listings
   }
 
-  listingsByPage (page = 1) {
-    let start = (LISTINGS_PER_PAGE * (page - 1))
-    let end = (page * LISTINGS_PER_PAGE) - 1
-
-    return this._listings.slice(start, end)
+  get listingsPerPage () {
+    return this._listingsPerPage
   }
 }
 

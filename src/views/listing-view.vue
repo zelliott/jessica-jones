@@ -28,7 +28,7 @@ export default {
   },
 
   created () {
-    this.id = this.$route.params.listingId
+    this.id = this.$route.params.id
 
     ListingsService.get(this.id)
       .then((listing) => {

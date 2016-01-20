@@ -1,3 +1,11 @@
 .listings-view {
   margin-top: 64px;
+
+  .listings-pagination {
+    padding: 20px;
+
+    a {
+      display: inline-block;
+    }
+  }
 }
