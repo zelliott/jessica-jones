@@ -1,29 +1,51 @@
 import db from '../../server/db.js'
 import moment from 'moment'
+import ListingsStore from '../stores/listings-store'
+import _ from 'lodash'
 
 class ListingsService {
 
-  post (title, description) {
-    db.child('listings').push({
-      title: title,
-      description: description,
-      timestamp: moment().format('MMMM Do, YYYY')
-    }, (error) => {
-      if (error) {
-        console.log('Post failed')
-      } else {
-        console.log('Post succeeded')
+  get (id) {
+    return new Promise((res, rej) => {
+      if (ListingsStore.listings[id]) {
+        res(ListingsStore.listings[id])
       }
+
+      db.child('listings/' + id).once('value', (snapshot) => {
+        if (_.isNull(snapshot.val())) {
+          rej()
+        } else {
+          res(snapshot.val())
+        }
+      })
+    })
+  }
+
+  post (title, description) {
+    return new Promise((res, rej) => {
+      let id = db.child('listings').push({
+        title: title,
+        description: description,
+        timestamp: moment().unix() * 1000
+      }, (error) => {
+        if (error) {
+          rej(error)
+        } else {
+          res(id.key())
+        }
+      })
     })
   }
 
   delete (id) {
-    db.child('listings/' + id).remove((error) => {
-      if (error) {
-        console.log('Delete failed')
-      } else {
-        console.log('Delete success')
-      }
+    return new Promise((res, rej) => {
+      db.child('listings/' + id).remove((error) => {
+        if (error) {
+          rej(error)
+        } else {
+          res()
+        }
+      })
     })
   }
 }

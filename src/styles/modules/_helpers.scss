@@ -6,3 +6,17 @@
 .view {
   background: #fff;
 }
+
+.ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.oi-l {
+  margin-right: 10px;
+}
+
+.oi-r {
+  margin-left: 10px;
+}

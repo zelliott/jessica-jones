@@ -2,20 +2,29 @@ import { EventEmitter } from 'events'
 import db from '../../server/db.js'
 import _ from 'lodash'
 
+const LISTINGS_PER_PAGE = 5
+
 class ListingsStore extends EventEmitter {
 
   constructor () {
     super()
-    this._listings = {}
+    this._listings = []
 
-    db.on('value', (snapshot) => {
+    db.child('listings').on('value', (snapshot) => {
 
       if (_.isNull(snapshot.val())) {
+        this._listings = []
         return
       }
 
-      this._listings = snapshot.val().listings
-      this.emit('listings-updated')
+      this._listings = _
+        .chain(snapshot.val())
+        .map((listing, id) => {
+          listing.id = id
+          return listing
+        })
+        .reverse()
+        .value()
     })
   }
 
@@ -23,17 +32,11 @@ class ListingsStore extends EventEmitter {
     return this._listings
   }
 
-  getListing (id) {
+  listingsByPage (page = 1) {
+    let start = (LISTINGS_PER_PAGE * (page - 1))
+    let end = (page * LISTINGS_PER_PAGE) - 1
 
-    return new Promise((res, rej) => {
-      if (this._listings[id]) {
-        res(this._listings[id])
-      }
-
-      db.child('listings/' + id).once('value', (snapshot) => {
-        res(snapshot.val())
-      }, rej)
-    })
+    return this._listings.slice(start, end)
   }
 }
 

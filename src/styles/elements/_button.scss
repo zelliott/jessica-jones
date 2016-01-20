@@ -2,11 +2,19 @@ button {
   background: none;
   border: none;
   @include border-radius(5px);
+  outline: none;
 }
 
 .btn {
   font-weight: 500;
   padding: 10px 20px;
+
+  .oi {
+    font-size: 12px;
+    margin-top: -4px;
+    vertical-align: middle;
+    display: inline-block;
+  }
 }
 
 .btn-charcoal {
@@ -17,6 +25,10 @@ button {
 .btn-green {
   background: $green;
   color: #fff;
+
+  &:hover {
+    background: $dark-green;
+  }
 }
 
 .btn-hover-red:hover {

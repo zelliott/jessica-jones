@@ -16,6 +16,18 @@
   form {
     padding: 40px;
 
+    .form-warning {
+      background: $light-yellow;
+      @include border-radius(5px);
+      color: $dark-yellow;
+      padding: 10px;
+      width: 600px;
+
+      > div {
+        padding: 5px;
+      }
+    }
+
     .form-group {
       position: relative;
       padding-top: 30px;
@@ -34,6 +46,7 @@
       input,
       textarea {
         display: block;
+        width: 600px;
       }
     }
 
