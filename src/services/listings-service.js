@@ -1,6 +1,7 @@
 import db from '../../server/db.js'
 import moment from 'moment'
 import ListingsStore from '../stores/listings-store'
+import UserStore from '../stores/user-store'
 import _ from 'lodash'
 
 class ListingsService {
@@ -26,7 +27,8 @@ class ListingsService {
       let id = db.child('listings').push({
         title: title,
         description: description,
-        timestamp: moment().unix() * 1000
+        timestamp: moment().unix() * 1000,
+        email: UserStore.email
       }, (error) => {
         if (error) {
           rej(error)

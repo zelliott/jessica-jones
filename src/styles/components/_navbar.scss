@@ -28,4 +28,11 @@
   .navbar-right {
     float: right;
   }
+
+  .navbar-text {
+    color: $med-blue;
+    font-weight: 400;
+    display: inline-block;
+    line-height: 64px;
+  }
 }

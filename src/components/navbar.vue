@@ -13,6 +13,12 @@
         </a>
       </div>
       <div class="navbar-right">
+        <div class="navbar-text">
+          {{ email }}
+        </div>
+        <a @click="logout">
+          Logout
+        </a>
         <!-- <a @click="login">
           <span class="oi oi-l" data-glyph="key" aria-hidden="true"></span>
           Login
@@ -24,6 +30,8 @@
 
 <script>
 import LoginModal from './modals/login.vue'
+import UserStore from '../stores/user-store'
+import UserService from '../services/user-service'
 
 export default {
   components: {
@@ -32,13 +40,29 @@ export default {
 
   data () {
     return {
-      showLogin: false
+      showLogin: false,
+      email: UserStore.email
     }
   },
 
   methods: {
     login () {
       this.$set('showLogin', true)
+    },
+
+    logout (e) {
+      e.preventDefault()
+
+      UserService.logout().then(() => {
+
+        UserStore.logout()
+        this.$route.router.go({
+          name: 'login'
+        })
+
+      }).catch((error) => {
+        console.log(error)
+      })
     }
   }
 }

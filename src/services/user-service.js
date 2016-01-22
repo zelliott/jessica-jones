@@ -50,6 +50,13 @@ class UserService {
       })
     })
   }
+
+  logout () {
+    return new Promise((res, rej) => {
+      db.unauth()
+      res()
+    })
+  }
 }
 
 export default new UserService()

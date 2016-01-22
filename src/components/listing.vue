@@ -7,6 +7,7 @@
       <div>
         <a class="listing-title ellipsis" v-link="{ name: 'listing', params: { id: listing.id } }">{{ listing.title }}</a>
       </div>
+      <div class="listing-email">{{ listing.email }}</div>
       <div class="listing-timestamp">{{ listing.timestamp | fromNow }}</div>
     </div>
   </div>

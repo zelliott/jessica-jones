@@ -65,7 +65,7 @@ export default {
         password: this.password
       }).then((user) => {
         this.$route.router.go({
-          path: '/listings'
+          name: 'login'
         })
       }).catch((error) => {
         console.log(error)

@@ -1,7 +1,7 @@
 <template>
   <navbar></navbar>
   <div v-show="listing" class="listing-view view max-width">
-    <div class="listing-timestamp">posted {{ listing.timestamp | fromNow }}</div>
+    <div class="listing-info">{{ listing.timestamp | fromNow }} by {{ listing.email }}</div>
     <div v-show="!editing" class="listing-title">{{ listing.title }}</div>
     <div v-show="!editing" class="listing-description">{{ listing.description }}</div>
 
@@ -37,18 +37,20 @@
         Reported
       </button>
 
-      <button class="btn btn-small btn-red-text right" @click="delete">
-        <span class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
-        Delete
-      </button>
-      <button v-show="!editing" class="btn btn-small btn-blue-text right" @click="edit">
-        <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
-        Edit
-      </button>
-      <button v-show="editing" class="btn btn-small btn-blue-text right" @click="update">
-        <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
-        Save edits
-      </button>
+      <div v-show="isAuthor">
+        <button class="btn btn-small btn-red-text right" @click="delete">
+          <span class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
+          Delete
+        </button>
+        <button v-show="!editing" class="btn btn-small btn-blue-text right" @click="edit">
+          <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+          Edit
+        </button>
+        <button v-show="editing" class="btn btn-small btn-blue-text right" @click="update">
+          <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+          Save edits
+        </button>
+      </div>
     </div>
   </div>
   <div v-show="noListing" class="listing-view view max-width">
@@ -61,6 +63,7 @@
 <script>
 import Navbar from '../components/navbar'
 import ListingsService from '../services/listings-service'
+import UserStore from '../stores/user-store'
 
 export default {
   components: {
@@ -72,7 +75,8 @@ export default {
       listing: null,
       noListing: false,
       editing: false,
-      dbError: false
+      dbError: false,
+      isAuthor: false
     }
   },
 
@@ -82,6 +86,7 @@ export default {
     ListingsService.get(this.id)
       .then((listing) => {
         this.$set('listing', listing)
+        this.$set('isAuthor', listing.email === UserStore.email)
       })
       .catch(() => {
         this.$set('noListing', true)
