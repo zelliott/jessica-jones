@@ -1,6 +1,7 @@
 <template>
+  <navbar></navbar>
   <div v-show="listing" class="listing-view view max-width">
-    <div class="listing-timestamp">{{ listing.timestamp | fromNow }}</div>
+    <div class="listing-timestamp">posted {{ listing.timestamp | fromNow }}</div>
     <div v-show="!editing" class="listing-title">{{ listing.title }}</div>
     <div v-show="!editing" class="listing-description">{{ listing.description }}</div>
 
@@ -31,7 +32,7 @@
         <span class="oi oi-l" data-glyph="flag" aria-hidden="true"></span>
         Report
       </button>
-      <button v-show="listing.reported" class="btn btn-small btn-green-text btn-disabled left">
+      <button v-show="listing.reported" class="btn btn-small btn-green-text left" @click="report">
         <span class="oi oi-l" data-glyph="check" aria-hidden="true"></span>
         Reported
       </button>
@@ -58,9 +59,13 @@
 </template>
 
 <script>
+import Navbar from '../components/navbar'
 import ListingsService from '../services/listings-service'
 
 export default {
+  components: {
+    Navbar
+  },
   data () {
     return {
       id: null,
@@ -113,8 +118,9 @@ export default {
     },
 
     report (e) {
-      ListingsService.update(this.id, { reported: 'true' }).then(() => {
-        this.$set('listing.reported', true)
+
+      ListingsService.update(this.id, { reported: !this.listing.reported }).then(() => {
+        this.$set('listing.reported', !this.listing.reported)
       }).catch((error) => {
         console.log(error)
       })

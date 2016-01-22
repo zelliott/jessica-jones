@@ -1,4 +1,5 @@
 <template>
+  <navbar></navbar>
   <div class="post-listing-view view max-width">
     <div class="form-title">Post a listing</div>
     <div class="form-description">
@@ -46,11 +47,14 @@
 </template>
 
 <script>
-
+import Navbar from '../components/navbar'
 import ListingsService from '../services/listings-service'
 import _ from 'lodash'
 
 export default {
+  components: {
+    Navbar
+  },
   data () {
     return {
       title: '',
@@ -60,6 +64,7 @@ export default {
       dbError: false
     }
   },
+
   methods: {
     post (e) {
       e.preventDefault()
@@ -81,7 +86,7 @@ export default {
           })
         }).catch((error) => {
           console.log(error)
-          this.dbError = true
+          this.$set('dbError', true)
         })
       }
     }

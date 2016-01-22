@@ -1,4 +1,5 @@
 <template>
+  <navbar></navbar>
   <div class="listings-view view max-width">
 
     <div class="listings-loading" v-show="loading">
@@ -33,11 +34,13 @@
 </template>
 
 <script>
+import Navbar from '../components/navbar'
 import Listing from '../components/listing'
 import ListingsStore from '../stores/listings-store'
 
 export default {
   components: {
+    Navbar,
     Listing
   },
 

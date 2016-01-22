@@ -37,6 +37,7 @@
 
     .form-warning {
       margin-bottom: 40px;
+      width: 600px;
     }
 
     .form-group {
@@ -45,6 +46,11 @@
 
     input {
       margin-bottom: 40px;
+    }
+
+    input,
+    textarea {
+      width: 600px;
     }
   }
  }

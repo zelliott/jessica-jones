@@ -19,5 +19,14 @@
 
   form {
     padding: 10px 40px 40px 40px;
+
+    .form-warning {
+      width: 600px;
+    }
+
+    input,
+    textarea {
+      width: 600px;
+    }
   }
 }

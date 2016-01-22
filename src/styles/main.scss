@@ -10,13 +10,17 @@
 @import './elements/input';
 @import './elements/textarea';
 @import './elements/form';
+@import './elements/modal';
 
 @import './base';
 
 @import './components/navbar';
 @import './components/listings';
 @import './components/listing';
+@import './components/modals/login';
 
 @import './views/listing';
 @import './views/listings';
 @import './views/post-listing';
+@import './views/signup';
+@import './views/login';

@@ -32,3 +32,11 @@
   -ms-user-select: $value;
   user-select: $value;
 }
+
+@mixin filter($filter-value) {
+  -webkit-filter: $filter-value;
+     -moz-filter: $filter-value;
+      -ms-filter: $filter-value;
+       -o-filter: $filter-value;
+          filter: $filter-value;
+}

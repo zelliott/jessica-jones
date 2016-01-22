@@ -9,7 +9,8 @@
     }
   }
 
-  .navbar-left {
+  .navbar-left,
+  .navbar-right {
 
     a {
       color: $med-blue;
@@ -22,5 +23,9 @@
         color: #fff;
       }
     }
+  }
+
+  .navbar-right {
+    float: right;
   }
 }

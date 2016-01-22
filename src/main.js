@@ -6,6 +6,8 @@ import DefaultView from './views/default-view'
 import ListingsView from './views/listings-view'
 import ListingView from './views/listing-view'
 import PostListingView from './views/post-listing-view'
+import SignupView from './views/signup-view'
+import LoginView from './views/login-view'
 
 Vue.use(Router)
 
@@ -29,6 +31,14 @@ router.map({
   '/post': {
     name: 'post',
     component: PostListingView
+  },
+  '/signup': {
+    name: 'signup',
+    component: SignupView
+  },
+  '/login': {
+    name: 'login',
+    component: LoginView
   }
 })
 
