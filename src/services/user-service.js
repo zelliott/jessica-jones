@@ -1,4 +1,5 @@
 import db from '../../server/db.js'
+import Errors from '../constants/error-constants'
 
 class UserService {
 
@@ -12,7 +13,7 @@ class UserService {
 
       db.createUser(user, (error, data) => {
         if (error) {
-          rej(error)
+          rej(Errors[error.code])
         } else {
 
           // db.resetPassword({
@@ -29,7 +30,7 @@ class UserService {
             confirmed: false
           }, (error) => {
             if (error) {
-              rej(error)
+              rej(Errors[error.code])
             } else {
               res()
             }
@@ -43,7 +44,7 @@ class UserService {
     return new Promise((res, rej) => {
       db.authWithPassword(user, (error, data) => {
         if (error) {
-          rej(error)
+          rej(Errors[error.code])
         } else {
           res(data)
         }

@@ -6,7 +6,7 @@
 
         <div v-show="dbError" class="form-warning">
           <div>
-            Database error.
+            {{ errorMessage }}
           </div>
         </div>
 
@@ -52,7 +52,8 @@ export default {
     return {
       email: '',
       password: '',
-      dbError: false
+      dbError: false,
+      errorMessage: ''
     }
   },
 
@@ -68,8 +69,8 @@ export default {
           path: '/listings'
         })
       }).catch((error) => {
-        console.log(error)
         this.$set('dbError', true)
+        this.$set('errorMessage', error)
       })
     }
   }
