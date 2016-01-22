@@ -18,6 +18,14 @@ button {
   }
 }
 
+.btn-disabled {
+  cursor: default;
+}
+
+.btn-small {
+  font-size: 14px;
+}
+
 .btn-charcoal {
   background: #333;
   color: #fff;
@@ -38,6 +46,26 @@ button {
   }
 }
 
+.btn-green-text {
+  background: #fff;
+  color: $green;
+}
+
+.btn-yellow-text {
+  background: #fff;
+  color: $yellow;
+}
+
+.btn-red-text {
+  background: #fff;
+  color: $red;
+
+  &:hover,
+  &:focus {
+    background: $light-red;
+  }
+}
+
 .btn-green {
   background: $green;
   color: #fff;
@@ -46,9 +74,4 @@ button {
   &:focus {
     background: $dark-green;
   }
-}
-
-.btn-hover-red:hover {
-  background: $red;
-  color: #fff;
 }

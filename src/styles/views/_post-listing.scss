@@ -19,47 +19,5 @@
 
   form {
     padding: 10px 40px 40px 40px;
-
-    .form-warning {
-      background: $light-yellow;
-      @include border-radius(5px);
-      color: $dark-yellow;
-      padding: 10px;
-      width: 600px;
-
-      > div {
-        padding: 5px;
-      }
-    }
-
-    .form-group {
-      position: relative;
-      padding-top: 30px;
-      margin: 20px 0 40px 0;
-
-      label {
-        cursor: pointer;
-        display: block;
-        font-weight: 500;
-        font-size: 14px;
-        color: #999;
-        position: absolute;
-        top: 0;
-      }
-
-      input,
-      textarea {
-        display: block;
-        width: 600px;
-      }
-
-      textarea {
-        height: 100px;
-      }
-    }
-
-    input:focus + label, textarea:focus + label {
-      color: $blue;
-    }
   }
 }

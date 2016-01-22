@@ -1,6 +1,7 @@
 input {
   @include border-radius(5px);
   border: 1px solid #ddd;
+  color: #999;
   padding: 10px;
   resize: none;
   outline: none;
@@ -11,5 +12,6 @@ input {
 
   &:focus {
     border-color: $blue;
+    color: #222;
   }
 }

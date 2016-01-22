@@ -37,6 +37,18 @@ class ListingsService {
     })
   }
 
+  update (id, listing) {
+    return new Promise((res, rej) => {
+      db.child('listings/' + id).update(listing, (error) => {
+        if (error) {
+          rej(error)
+        } else {
+          res()
+        }
+      })
+    })
+  }
+
   delete (id) {
     return new Promise((res, rej) => {
       db.child('listings/' + id).remove((error) => {

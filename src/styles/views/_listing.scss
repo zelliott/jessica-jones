@@ -20,8 +20,10 @@
     font-size: 15px;
   }
 
-  button {
-    margin: 20px 40px;
+  .listing-actions {
+    button.right {
+      margin-left: 20px;
+    }
   }
 
   .no-listing {
@@ -29,5 +31,20 @@
     color: #999;
     padding: 40px;
     text-align: center;
+  }
+
+  .listing-edit-form {
+
+    .form-warning {
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      margin: 0px 0 40px 0;
+    }
+
+    input {
+      margin-bottom: 40px;
+    }
   }
  }
