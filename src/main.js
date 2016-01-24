@@ -8,6 +8,7 @@ import ListingView from './views/listing-view'
 import PostListingView from './views/post-listing-view'
 import SignupView from './views/signup-view'
 import LoginView from './views/login-view'
+import VerifyView from './views/verify-view'
 
 import UserStore from './stores/user-store'
 
@@ -41,6 +42,10 @@ router.map({
   '/login': {
     name: 'login',
     component: LoginView
+  },
+  '/verify/:id': {
+    name: 'verify',
+    component: VerifyView
   }
 })
 
@@ -50,9 +55,14 @@ router.redirect({
 })
 
 router.beforeEach(({ to, next }) => {
-  if (to.name === 'listings' ||
+
+  let isProtected = (
+    to.name === 'listings' ||
     to.name === 'listing' ||
-    to.name === 'post') {
+    to.name === 'post'
+  )
+
+  if (isProtected) {
     return UserStore.isLoggedIn()
   } else {
     next()

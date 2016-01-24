@@ -1,4 +1,4 @@
-.signup-success {
+.verify-pane {
   background: #fff;
   height: 100vh;
   width: 50%;
@@ -9,7 +9,7 @@
     right: 80px;
     top: 80px;
 
-    .success-title {
+    .verify-title {
       font-size: 20px;
       font-weight: 500;
       padding-bottom: 20px;
@@ -21,16 +21,16 @@
       }
     }
 
-    .success-message {
+    .verify-message {
       font-size: 20px;
 
-      .success-message-header {
+      .verify-message-header {
         color: $green;
         font-weight: 500;
         margin: 30px 0;
       }
 
-      .success-message-body {
+      .verify-message-body {
         color: #999;
         font-weight: 400;
         width: 300px;
@@ -43,7 +43,7 @@
       }
     }
 
-    .success-link {
+    .verify-link {
       text-align: center;
       margin-top: 40px;
     }

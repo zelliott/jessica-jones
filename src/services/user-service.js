@@ -1,5 +1,6 @@
 import db from '../../server/db.js'
 import Errors from '../constants/error-constants'
+import EmailService from './email-service'
 
 class UserService {
 
@@ -16,22 +17,13 @@ class UserService {
           rej(Errors[error.code])
         } else {
 
-          // db.resetPassword({
-          //   email: user.email
-          // }, (error) => {
-          //   if (error) {
-          //     rej(error)
-          //   } else {
-          //     res(data)
-          //   }
-          // })
-
           db.child('users/' + data.uid).set({
             confirmed: false
           }, (error) => {
             if (error) {
               rej(Errors[error.code])
             } else {
+              EmailService.sendConfirmation(data.uid, data.email)
               res()
             }
           })
@@ -46,7 +38,16 @@ class UserService {
         if (error) {
           rej(Errors[error.code])
         } else {
-          res(data)
+
+          db.child('users/' + data.uid).once('value', (verified) => {
+            if (!verified.val().confirmed) {
+              rej('Email has not been confirmed, click on the emailed confirmation link.')
+            } else {
+              res(data)
+            }
+          }, (error) => {
+            rej(error)
+          })
         }
       })
     })
@@ -56,6 +57,20 @@ class UserService {
     return new Promise((res, rej) => {
       db.unauth()
       res()
+    })
+  }
+
+  verifyUser (id) {
+    return new Promise((res, rej) => {
+      db.child('users/' + id).set({
+        confirmed: true
+      }, (error) => {
+        if (error) {
+          rej(Errors[error.code])
+        } else {
+          res()
+        }
+      })
     })
   }
 }
