@@ -12,11 +12,10 @@ class EmailService {
   sendConfirmation (id, email) {
 
     let message = {
-      html: '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href=' + BASE_URL + id + '>' + BASE_URL + id + '</a>',
+      html: '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href="' + BASE_URL + id + '">' + BASE_URL + id + '</a>',
       from_email: 'noreply@jessica-jones.com',
       to: [{
-        email: email,
-        type: 'to'
+        email: email
       }]
     }
 
