@@ -8,6 +8,6 @@ app.get('/', function (req, res) {
   res.sendFile('../dist/index.html', { root: __dirname });
 });
 
-app.listen(3000, function () {
+app.listen(process.env.PORT || 3000, function () {
   console.log('Listinging on port 3000');
 });
