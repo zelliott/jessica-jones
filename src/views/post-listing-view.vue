@@ -4,8 +4,8 @@
     <div class="form-title">Post a listing</div>
     <div class="form-description">
       Fill out the form below to post a job listing to Penn students.
-      <br \>
-      <br \>
+      <br>
+      <br>
       Some tips when posting a job listing:
 
       <ul>

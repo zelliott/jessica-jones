@@ -6,16 +6,19 @@
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
-    "test": "karma start build/karma.conf.js --single-run"
+    "test": "karma start build/karma.conf.js --single-run",
+    "start": "node server/app.js"
   },
   "dependencies": {
     "css-loader": "^0.23.1",
     "es6-promise": "^3.0.2",
+    "express": "^4.13.4",
     "firebase": "^2.3.2",
     "jquery": "^2.2.0",
     "lodash": "^4.0.0",
     "mandrill-api": "^1.0.45",
     "moment": "^2.11.1",
+    "path": "^0.12.7",
     "style-loader": "^0.13.0",
     "vue": "^1.0.0",
     "vue-router": "^0.7.8",

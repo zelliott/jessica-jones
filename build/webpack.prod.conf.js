@@ -5,7 +5,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 // naming output files with hashes for better caching.
 // dist/index.html will be auto-generated with correct URLs.
-config.output.filename = '[name].[chunkhash].js'
+/*config.output.filename = '[name].[chunkhash].js'
 config.output.chunkFilename = '[id].[chunkhash].js'
 
 // whether to generate source map for production files.
@@ -29,6 +29,7 @@ config.vue.loaders = {
   sass: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'sass'])),
   stylus: ExtractTextPlugin.extract('vue-style-loader', generateExtractLoaders(['css', 'stylus']))
 }
+*/
 
 config.plugins = (config.plugins || []).concat([
   // http://vuejs.github.io/vue-loader/workflow/production.html
