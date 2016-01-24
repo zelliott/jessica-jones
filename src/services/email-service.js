@@ -1,7 +1,7 @@
 import mandrill from 'mandrill-api/mandrill'
 
 const API_KEY = '2_DhGpyFJH7YF9ETuCpiKw'
-const BASE_URL = 'http://localhost:8080/#!/verify/'
+const BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/'
 
 class EmailService {
 
