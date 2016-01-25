@@ -1,6 +1,6 @@
 import db from '../../server/db.js'
 import Errors from '../constants/error-constants'
-import EmailService from './email-service'
+// import EmailService from './email-service'
 
 class UserService {
 
@@ -23,7 +23,7 @@ class UserService {
             if (error) {
               rej(Errors[error.code])
             } else {
-              EmailService.sendConfirmation(data.uid, data.email)
+              // EmailService.sendConfirmation(data.uid, data.email)
               res()
             }
           })

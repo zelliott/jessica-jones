@@ -32,8 +32,43 @@
   textarea {
     height: 100px;
   }
+
+  input:focus + label, textarea:focus + label {
+    color: $blue;
+  }
 }
 
-input:focus + label, textarea:focus + label {
-  color: $blue;
+.checkbox-form-group {
+  margin-bottom: 40px;
+  position: relative;
+
+  label {
+    display: block;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    padding: 20px 20px 20px 50px;
+    @include border-radius(5px);
+    line-height: 22px;
+    font-size: 15px;
+    width: 550px;
+    color: #999;
+
+    b {
+      color: #666;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 5px;
+    }
+  }
+
+  input[type=checkbox] {
+    position: absolute;
+    top: 25px;
+    left: 20px;
+    margin-bottom: 12px;
+  }
+
+  input[type=checkbox]:checked + label {
+    background: $light-blue;
+  }
 }

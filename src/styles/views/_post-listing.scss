@@ -24,7 +24,8 @@
       width: 600px;
     }
 
-    input,
+    input[type=text],
+    input[type=password],
     textarea {
       width: 600px;
     }

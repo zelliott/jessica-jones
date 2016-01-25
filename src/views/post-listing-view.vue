@@ -38,6 +38,14 @@
         </textarea>
         <label for="description">Description *</label>
       </div>
+      <div class="checkbox-form-group">
+        <input type="checkbox" id="anonymous" v-model="anonymous">
+        <label for="anonymous">
+          <b>Post anonymously</b>
+          Your handle (you@seas) won't appear next to your post, but don't forget to
+          add an email or phone number.
+        </label>
+      </div>
       <button class="btn btn-green" type="submit" @click="post">
         <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
         Post
@@ -59,6 +67,7 @@ export default {
     return {
       title: '',
       description: '',
+      anonymous: false,
       titleValid: true,
       descriptionValid: true,
       dbError: false
@@ -76,7 +85,8 @@ export default {
 
         ListingsService.post(
           this.title,
-          this.description
+          this.description,
+          this.anonymous
         ).then((id) => {
           this.$route.router.go({
             name: 'listing',

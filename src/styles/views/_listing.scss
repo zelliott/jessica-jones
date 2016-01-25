@@ -19,6 +19,16 @@
   .listing-info {
     color: #999;
     font-size: 15px;
+
+    a {
+      border-bottom: 1px dotted #ccc;
+      padding-bottom: 2px;
+
+      &:hover {
+        border-color: #999;
+        color: #777;
+      }
+    }
   }
 
   .listing-actions {

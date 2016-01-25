@@ -22,11 +22,12 @@ class ListingsService {
     })
   }
 
-  post (title, description) {
+  post (title, description, anonymous) {
     return new Promise((res, rej) => {
       let id = db.child('listings').push({
         title: title,
         description: description,
+        anonymous: anonymous,
         timestamp: moment().unix() * 1000,
         email: UserStore.email
       }, (error) => {

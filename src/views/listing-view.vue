@@ -1,7 +1,11 @@
 <template>
   <navbar></navbar>
   <div v-show="listing" class="listing-view view max-width">
-    <div class="listing-info">{{ listing.timestamp | fromNow }} by {{ listing.email }}</div>
+    <div class="listing-info">
+      {{ listing.timestamp | fromNow }} by
+      <a v-show="!listing.anonymous" href="mailto:{{ listing.email }}@upenn.edu">{{ listing.email }}</a>
+      <span v-show="listing.anonymous">anonymous</span>
+    </div>
     <div v-show="!editing" class="listing-title">{{ listing.title }}</div>
     <div v-show="!editing" class="listing-description">{{ listing.description }}</div>
 
@@ -24,6 +28,14 @@
           placeholder="Description">
         </textarea>
         <label for="description">Description *</label>
+      </div>
+      <div class="checkbox-form-group">
+        <input type="checkbox" id="anonymous" v-model="listing.anonymous">
+        <label for="anonymous">
+          <b>Post anonymously</b>
+          Your handle (you@seas) won't appear next to your post, but don't forget to
+          add an email or phone number.
+        </label>
       </div>
     </div>
 

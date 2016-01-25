@@ -1,4 +1,4 @@
-import postmark from 'postmark'
+/*import postmark from 'postmark'
 
 // const BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/'
 
@@ -31,3 +31,4 @@ class EmailService {
 }
 
 export default new EmailService()
+*/
