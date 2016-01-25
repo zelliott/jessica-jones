@@ -82,7 +82,7 @@ export default {
           text: 'Get a contract in writing.'
         },
         {
-          path: 4,
+          index: 4,
           text: 'Stay in touch to keep your client updated with your progress.'
         }
       ]
