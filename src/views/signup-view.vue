@@ -62,8 +62,13 @@
       </div>
     </div>
   </div>
-  <div class="signup-info">
-
+  <div class="signup-info auth-info">
+    <img src="../assets/images/home_2.png"/>
+    <div class="call-to-action">Post any job or project to Penn students looking for work.</div>
+    <div class="attribution">
+      art by
+      <a target="_blank" href="https://thenounproject.com/Bloomua/">Anatolli Babi</a>
+    </div>
   </div>
 </template>
 

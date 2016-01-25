@@ -2,6 +2,13 @@
   <navbar></navbar>
   <div class="listings-view view max-width">
 
+    <!-- <div class="listings-filters clearfix">
+      <div class="listings-filter">
+        <input type="checkbox" id="my-listings" v-model="myListings"/>
+        <label for="my-listings">Show only my listings</label>
+      </div>
+    </div> -->
+
     <div class="listings-loading" v-show="loading">
       Loading...
     </div>
@@ -50,7 +57,8 @@ export default {
       listings: [],
       listingsCount: ListingsStore.listingsCount,
       listingsPerPage: ListingsStore.listingsPerPage,
-      loading: ListingsStore.loading
+      loading: ListingsStore.loading,
+      myListings: false
     }
   },
 

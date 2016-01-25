@@ -40,8 +40,17 @@
       </div>
     </form>
   </div>
-  <div class="login-info">
-
+  <div class="login-info auth-info">
+    <img v-show="tip.index === 0" src="../assets/images/login/login_0.png"/>
+    <img v-show="tip.index === 1" src="../assets/images/login/login_1.png"/>
+    <img v-show="tip.index === 2" src="../assets/images/login/login_2.png"/>
+    <img v-show="tip.index === 3" src="../assets/images/login/login_3.png"/>
+    <img v-show="tip.index === 4" src="../assets/images/login/login_4.png"/>
+    <div class="call-to-action">{{ tip.text }}</div>
+    <div class="attribution">
+      art by
+      <a target="_blank" href="https://thenounproject.com/Bloomua/">Anatolli Babi</a>
+    </div>
   </div>
 </template>
 
@@ -54,8 +63,34 @@ export default {
       email: '',
       password: '',
       dbError: false,
-      errorMessage: ''
+      errorMessage: '',
+      tips: [
+        {
+          index: 0,
+          text: 'Demonstrate past experience by building a portfolio and gathering recommendations.'
+        },
+        {
+          index: 1,
+          text: 'Meet in person with the client to build rapport.'
+        },
+        {
+          index: 2,
+          text: 'Keep track of your hours.'
+        },
+        {
+          index: 3,
+          text: 'Get a contract in writing.'
+        },
+        {
+          path: 4,
+          text: 'Stay in touch to keep your client updated with your progress.'
+        }
+      ]
     }
+  },
+
+  created () {
+    this.$set('tip', this.tips[Math.floor(Math.random() * this.tips.length)])
   },
 
   methods: {
