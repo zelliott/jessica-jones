@@ -1,31 +1,31 @@
-import mandrill from 'mandrill-api/mandrill'
+import postmark from 'postmark'
 
-const API_KEY = '2_DhGpyFJH7YF9ETuCpiKw'
-const BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/'
+// const BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/'
 
 class EmailService {
 
   constructor () {
-    this.client = new mandrill.Mandrill(API_KEY)
+    this.postmark = postmark(process.env.POSTMARK_API_TOKEN)
   }
 
-  sendConfirmation (id, email) {
+  sendConfirmation (id, to) {
 
-    let message = {
-      html: '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href=\"' + BASE_URL + id + '\">' + BASE_URL + id + '</a>',
-      from_email: 'noreply@jessica-jones.com',
-      to: [{
-        email: email
-      }]
-    }
+    // let message = '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href=\"' + BASE_URL + id + '\">' + BASE_URL + id + '</a>'
 
-    this.client.messages.send({
-      message: message,
-      async: false
-    }, (res) => {
-      console.log(res)
+    postmark.send({
+      'From': 'leonard@bigbangtheory.com',
+      'To': 'sheldon@bigbangtheory.com',
+      'Subject': 'Hello from Postmark',
+      'TextBody': 'Hello!',
+      'Tag': 'big-bang'
     }, (error) => {
-      console.log(error)
+
+      if (error) {
+        console.error('Unable to send via postmark: ' + error.message)
+        return
+      }
+
+      console.info('Sent to postmark for delivery')
     })
   }
 }
