@@ -42,7 +42,7 @@
     <div class="listing-actions clearfix">
       <button v-show="!listing.reported" class="btn btn-small btn-blue-text left" @click="report">
         <span class="oi oi-l" data-glyph="flag" aria-hidden="true"></span>
-        Report
+        Report as spam
       </button>
       <button v-show="listing.reported" class="btn btn-small btn-green-text left" @click="report">
         <span class="oi oi-l" data-glyph="check" aria-hidden="true"></span>

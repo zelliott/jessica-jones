@@ -46,7 +46,10 @@
     <img v-show="tip.index === 2" src="../assets/images/login/login_2.png"/>
     <img v-show="tip.index === 3" src="../assets/images/login/login_3.png"/>
     <img v-show="tip.index === 4" src="../assets/images/login/login_4.png"/>
-    <div class="call-to-action">{{ tip.text }}</div>
+    <div class="info-block">{{ tip.text }}</div>
+    <div class="info-block">
+      <span class="oi refresh" @click="nextTip" data-glyph="reload" aria-hidden="true"></span>
+    </div>
     <div class="attribution">
       art by
       <a target="_blank" href="https://thenounproject.com/Bloomua/">Anatolli Babi</a>
@@ -71,15 +74,15 @@ export default {
         },
         {
           index: 1,
-          text: 'Meet in person with the client to build rapport.'
+          text: 'Meet together early on to get to know one another and clearly define the project.'
         },
         {
           index: 2,
-          text: 'Keep track of your hours.'
+          text: 'Keep track of when you\'re working and what you\'ve been working on.'
         },
         {
           index: 3,
-          text: 'Get a contract in writing.'
+          text: 'Get a contract in writing to clearly define the project.'
         },
         {
           index: 4,
@@ -90,7 +93,8 @@ export default {
   },
 
   created () {
-    this.$set('tip', this.tips[Math.floor(Math.random() * this.tips.length)])
+    this.$set('tipIndex', Math.floor(Math.random() * this.tips.length))
+    this.$set('tip', this.tips[this.tipIndex])
   },
 
   methods: {
@@ -108,6 +112,11 @@ export default {
         this.$set('dbError', true)
         this.$set('errorMessage', error)
       })
+    },
+
+    nextTip () {
+      this.$set('tipIndex', (this.tipIndex + 1) % this.tips.length)
+      this.$set('tip', this.tips[this.tipIndex])
     }
   }
 }

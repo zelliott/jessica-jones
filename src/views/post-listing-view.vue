@@ -46,9 +46,9 @@
           add an email or phone number.
         </label>
       </div>
-      <button class="btn btn-green" type="submit" @click="post">
+      <button class="btn btn-green btn-large" type="submit" @click="post">
         <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
-        Post
+        Post this listing
       </button>
     </form>
   </div>
