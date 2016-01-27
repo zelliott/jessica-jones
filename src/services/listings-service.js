@@ -1,4 +1,4 @@
-import db from '../../server/db.js'
+import db from '../../server/config/db.js'
 import moment from 'moment'
 import ListingsStore from '../stores/listings-store'
 import UserStore from '../stores/user-store'

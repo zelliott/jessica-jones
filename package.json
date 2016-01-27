@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --inline --hot --config build/webpack.dev.conf.js",
     "build": "rimraf dist && webpack --progress --hide-modules --config build/webpack.prod.conf.js",
     "test": "karma start build/karma.conf.js --single-run",
-    "start": "node server/server.js"
+    "start": "node server/main.js"
   },
   "dependencies": {
     "body-parser": "^1.14.2",

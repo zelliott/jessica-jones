@@ -1,5 +1,5 @@
 import { EventEmitter } from 'events'
-import db from '../../server/db.js'
+import db from '../../server/config/db.js'
 
 const CHANGE = 'change'
 
