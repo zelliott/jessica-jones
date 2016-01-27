@@ -5,7 +5,7 @@ var router = express.Router();
 // var BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/';
 
 router.route('/email')
-  .post((req, res) => {
+  .post(function (req, res) {
 
     // let message = '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href=\"' + BASE_URL + id + '\">' + BASE_URL + id + '</a>'
 
@@ -17,11 +17,15 @@ router.route('/email')
       'Tag': 'big-bang'
     }, (error) => {
       if (error) {
-        res.status(404).send('Unable to send via postmark: ' + error.message);
+        res.status(400).send('Unable to send via postmark: ' + error.message);
       } else {
         res.json('Sent to postmark for delivery');
       }
     })
+  })
+
+  .get(function (req, res) {
+    res.send('Test');
   })
 
 module.exports = router;
