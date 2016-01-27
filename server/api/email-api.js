@@ -3,7 +3,7 @@ var morgan = require('morgan');
 var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
 var router = express.Router();
-var BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/';
+var BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/#!/verify/';
 
 router.use(morgan('dev'));
 
