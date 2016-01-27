@@ -7,6 +7,7 @@ class EmailService {
 
       $.ajax({
         url: '/api/email',
+        crossDomain: true,
         type: 'POST',
         dataType: 'json',
         data: { id, to },
