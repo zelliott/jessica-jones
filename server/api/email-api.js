@@ -1,31 +1,33 @@
 var express = require('express');
-var postmark = require('postmark')(process.env.POSTMARK_API_TOKEN);
+var morgan = require('morgan');
+var sendgrid = require('sendgrid')(process.env.SENDGRID_USERNAME, process.env.SENDGRID_PASSWORD);
 
 var router = express.Router();
-// var BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/';
+var BASE_URL = 'https://powerful-bayou-31061.herokuapp.com/verify/';
+
+router.use(morgan('dev'));
 
 router.route('/email')
   .post(function (req, res) {
 
-    // let message = '<p>Thanks for joining this listings network.  Click on the below link to verify your account.</p><a href=\"' + BASE_URL + id + '\">' + BASE_URL + id + '</a>'
+    var message = '<p>Thanks for signing up for Penn Listings.  To verify your email address, follow the link below.</p>' +
+      '<a href="' + BASE_URL + req.body.id + '">Verify your email address</a>';
 
-    postmark.send({
-      'From': 'leonard@bigbangtheory.com',
-      'To': 'sheldon@bigbangtheory.com',
-      'Subject': 'Hello from Postmark',
-      'TextBody': 'Hello!',
-      'Tag': 'big-bang'
-    }, (error) => {
+    var email = new sendgrid.Email({
+      to: req.body.to,
+      from: 'no-reply@jessica-jones.com',
+      subject: 'Thanks for signing up',
+      html: message
+    });
+
+    sendgrid.send(email, function (error, json) {
       if (error) {
-        res.status(400).send('Unable to send via postmark: ' + error.message);
+        console.log(error);
+        res.status(400).send(error);
       } else {
-        res.json('Sent to postmark for delivery');
+        res.json(json);
       }
-    })
-  })
-
-  .get(function (req, res) {
-    res.send('Test');
-  })
+    });
+  });
 
 module.exports = router;

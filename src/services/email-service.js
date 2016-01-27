@@ -4,7 +4,6 @@ class EmailService {
 
   sendConfirmation (id, to) {
     return new Promise((res, rej) => {
-
       $.ajax({
         url: '/api/email',
         crossDomain: true,

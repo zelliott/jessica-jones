@@ -23,8 +23,11 @@ class UserService {
             if (error) {
               rej(Errors[error.code])
             } else {
-              EmailService.sendConfirmation(data.uid, data.email)
-              res()
+              EmailService.sendConfirmation(data.uid, user.email).then((data) => {
+                res(data)
+              }).catch((error) => {
+                rej(error)
+              })
             }
           })
         }
