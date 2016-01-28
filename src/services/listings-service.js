@@ -29,7 +29,8 @@ class ListingsService {
         description: description,
         anonymous: anonymous,
         timestamp: moment().unix() * 1000,
-        email: UserStore.email
+        email: UserStore.email,
+        reported: { [UserStore.uid]: false }
       }, (error) => {
         if (error) {
           rej(error)
@@ -43,6 +44,20 @@ class ListingsService {
   update (id, listing) {
     return new Promise((res, rej) => {
       db.child('listings/' + id).update(listing, (error) => {
+        if (error) {
+          rej(error)
+        } else {
+          res()
+        }
+      })
+    })
+  }
+
+  report (id, reported) {
+    return new Promise((res, rej) => {
+      db.child('listings/' + id + '/reported').update({
+        [UserStore.uid]: reported
+      }, (error) => {
         if (error) {
           rej(error)
         } else {

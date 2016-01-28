@@ -40,11 +40,11 @@
     </div>
 
     <div class="listing-actions clearfix">
-      <button v-show="!listing.reported" class="btn btn-small btn-blue-text left" @click="report">
+      <button v-show="!reported" class="btn btn-small btn-blue-text left" @click="report">
         <span class="oi oi-l" data-glyph="flag" aria-hidden="true"></span>
         Report as spam
       </button>
-      <button v-show="listing.reported" class="btn btn-small btn-green-text left" @click="report">
+      <button v-show="reported" class="btn btn-small btn-green-text left" @click="report">
         <span class="oi oi-l" data-glyph="check" aria-hidden="true"></span>
         Reported
       </button>
@@ -85,6 +85,7 @@ export default {
     return {
       id: null,
       listing: null,
+      reported: false,
       noListing: false,
       editing: false,
       dbError: false,
@@ -97,6 +98,7 @@ export default {
 
     ListingsService.get(this.id)
       .then((listing) => {
+        this.$set('reported', listing.reported[UserStore.uid])
         this.$set('listing', listing)
         this.$set('isAuthor', listing.email === UserStore.email)
       })
@@ -136,8 +138,8 @@ export default {
 
     report (e) {
 
-      ListingsService.update(this.id, { reported: !this.listing.reported }).then(() => {
-        this.$set('listing.reported', !this.listing.reported)
+      ListingsService.report(this.id, !this.reported).then(() => {
+        this.$set('reported', !this.reported)
       }).catch((error) => {
         console.log(error)
       })
