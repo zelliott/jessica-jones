@@ -70,11 +70,11 @@ export default {
       tips: [
         {
           index: 0,
-          text: 'Demonstrate past experience by building a portfolio and gathering recommendations.'
+          text: 'Build a portfolio to demonstrate previous successful projects.'
         },
         {
           index: 1,
-          text: 'Meet together early on to get to know one another and clearly define the project.'
+          text: 'Meet in person to get to know one another and to define the project.'
         },
         {
           index: 2,
@@ -82,7 +82,7 @@ export default {
         },
         {
           index: 3,
-          text: 'Get a contract in writing to clearly define the project.'
+          text: 'Get a contract in writing to keep everyone on the same page.'
         },
         {
           index: 4,

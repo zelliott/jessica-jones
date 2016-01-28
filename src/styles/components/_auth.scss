@@ -61,7 +61,7 @@
     display: block;
     @include opacity(0.4);
     margin: 140px auto 0 auto;
-    width: 200px;
+    height: 175px;
   }
 
   .info-block {
@@ -76,6 +76,7 @@
       color: #bbb;
       font-size: 20px;
       cursor: pointer;
+      padding: 10px;
 
       &:hover {
         color: #999;
