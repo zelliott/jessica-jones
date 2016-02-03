@@ -30,7 +30,8 @@
         <label for="description">Password</label>
       </div>
       <button class="btn btn-green" type="submit" @click="signup">
-        <span class="oi oi-l" data-glyph="person" aria-hidden="true"></span>
+        <span v-show="!signingUp" class="oi oi-l" data-glyph="person" aria-hidden="true"></span>
+        <div v-show="signingUp" class="loader"></div>
         Sign up
       </button>
       <div class="form-bottom-link">
@@ -82,6 +83,7 @@ export default {
       password: '',
       dbError: false,
       errorMessage: '',
+      signingUp: false,
       signupSuccess: false
     }
   },
@@ -89,6 +91,7 @@ export default {
   methods: {
     signup (e) {
       e.preventDefault()
+      this.$set('signingUp', true)
 
       UserService.signup({
         email: this.email,
@@ -96,6 +99,7 @@ export default {
       }).then((user) => {
         this.$set('signupSuccess', true)
       }).catch((error) => {
+        this.$set('signingUp', false)
         this.$set('dbError', true)
         this.$set('errorMessage', error)
       })

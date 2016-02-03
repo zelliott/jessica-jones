@@ -51,7 +51,8 @@
 
       <div v-show="isAuthor">
         <button class="btn btn-small btn-red-text right" @click="delete">
-          <span class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
+          <span v-show="!deleting" class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
+          <div v-show="deleting" class="loader"></div>
           Delete
         </button>
         <button v-show="!editing" class="btn btn-small btn-blue-text right" @click="edit">
@@ -59,11 +60,15 @@
           Edit
         </button>
         <button v-show="editing" class="btn btn-small btn-blue-text right" @click="update">
-          <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+          <span v-show="!saving" class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+          <div v-show="saving" class="loader"></div>
           Save edits
         </button>
       </div>
     </div>
+  </div>
+  <div v-show="loading" class="listing-view view max-width">
+    <div class="loader"></div>
   </div>
   <div v-show="noListing" class="listing-view view max-width">
     <div class="no-listing">
@@ -87,7 +92,10 @@ export default {
       listing: null,
       reported: false,
       noListing: false,
+      loading: true,
       editing: false,
+      saving: false,
+      deleting: false,
       dbError: false,
       isAuthor: false
     }
@@ -98,11 +106,13 @@ export default {
 
     ListingsService.get(this.id)
       .then((listing) => {
+        this.$set('loading', false)
         this.$set('reported', listing.reported[UserStore.uid])
         this.$set('listing', listing)
         this.$set('isAuthor', listing.email === UserStore.email)
       })
       .catch(() => {
+        this.$set('loading', false)
         this.$set('noListing', true)
       })
   },
@@ -110,12 +120,15 @@ export default {
   methods: {
     delete (e) {
       e.preventDefault()
+      this.$set('deleting', true)
 
       ListingsService.delete(this.id).then(() => {
+        this.$set('deleting', false)
         this.$route.router.go({
           path: '/listings'
         })
       }).catch((error) => {
+        this.$set('deleting', false)
         console.log(error)
       })
     },
@@ -126,11 +139,14 @@ export default {
 
     update (e) {
       e.preventDefault()
+      this.$set('saving', true)
 
       ListingsService.update(this.id, this.listing).then(() => {
+        this.$set('saving', false)
         this.$set('editing', false)
         this.$set('dbError', false)
       }).catch((error) => {
+        this.$set('saving', false)
         this.$set('dbError', true)
         console.log(error)
       })

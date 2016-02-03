@@ -47,7 +47,8 @@
         </label>
       </div>
       <button class="btn btn-green btn-large" type="submit" @click="post">
-        <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+        <span v-show="!posting" class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
+        <div v-show="posting" class="loader"></div>
         Post this listing
       </button>
     </form>
@@ -70,7 +71,8 @@ export default {
       anonymous: false,
       titleValid: true,
       descriptionValid: true,
-      dbError: false
+      dbError: false,
+      posting: false
     }
   },
 
@@ -83,11 +85,14 @@ export default {
 
       if (this.titleValid && this.descriptionValid) {
 
+        this.$set('posting', true)
+
         ListingsService.post(
           this.title,
           this.description,
           this.anonymous
         ).then((id) => {
+          this.$set('posting', false)
           this.$route.router.go({
             name: 'listing',
             params: {
@@ -97,6 +102,7 @@ export default {
         }).catch((error) => {
           console.log(error)
           this.$set('dbError', true)
+          this.$set('posting', false)
         })
       }
     }

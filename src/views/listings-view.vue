@@ -10,7 +10,7 @@
     </div> -->
 
     <div class="listings-loading" v-show="loading">
-      Loading...
+      <div class="loader"></div>
     </div>
 
     <div class="no-listings" v-show="!loading && listingsCount === 0">

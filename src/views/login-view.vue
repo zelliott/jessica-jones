@@ -30,7 +30,8 @@
         <label for="description">Password</label>
       </div>
       <button class="btn btn-green" type="submit" @click="login">
-        <span class="oi oi-l" data-glyph="key" aria-hidden="true"></span>
+        <span v-show="!loggingIn" class="oi oi-l" data-glyph="key" aria-hidden="true"></span>
+        <div v-show="loggingIn" class="loader"></div>
         Login
       </button>
       <div class="form-bottom-link">
@@ -67,6 +68,7 @@ export default {
       password: '',
       dbError: false,
       errorMessage: '',
+      loggingIn: false,
       tips: [
         {
           index: 0,
@@ -100,6 +102,7 @@ export default {
   methods: {
     login (e) {
       e.preventDefault()
+      this.$set('loggingIn', true)
 
       UserService.login({
         email: this.email,
@@ -109,6 +112,7 @@ export default {
           path: '/listings'
         })
       }).catch((error) => {
+        this.$set('loggingIn', false)
         this.$set('dbError', true)
         this.$set('errorMessage', error)
       })
