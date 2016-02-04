@@ -3,6 +3,12 @@
   width: $site-width;
 }
 
+@media (max-width: $site-width) {
+  .max-width {
+    width: 100%;
+  }
+}
+
 .view {
   background: #fff;
 }

@@ -29,5 +29,21 @@
     textarea {
       width: 600px;
     }
+
+    @media (max-width: $site-width) {
+      .form-warning {
+        max-width: calc(100% - 20px);
+      }
+
+      input[type=text],
+      input[type=password],
+      textarea {
+        max-width: calc(100% - 20px);
+      }
+
+      .checkbox-form-group label {
+        max-width: calc(100% - 67px);
+      }
+    }
   }
 }

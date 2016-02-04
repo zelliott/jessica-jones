@@ -13,7 +13,7 @@
         </a>
       </div>
       <div class="navbar-right">
-        <div class="navbar-text">
+        <div class="navbar-text navbar-email">
           {{ email }}
         </div>
         <a @click="logout">

@@ -42,7 +42,7 @@
     <div class="listing-actions clearfix">
       <button v-show="!reported" class="btn btn-small btn-blue-text left" @click="report">
         <span class="oi oi-l" data-glyph="flag" aria-hidden="true"></span>
-        Report as spam
+        Report
       </button>
       <button v-show="reported" class="btn btn-small btn-green-text left" @click="report">
         <span class="oi oi-l" data-glyph="check" aria-hidden="true"></span>
@@ -53,7 +53,7 @@
         <button class="btn btn-small btn-red-text right" @click="delete">
           <span v-show="!deleting" class="oi oi-l" data-glyph="x" aria-hidden="true"></span>
           <div v-show="deleting" class="loader"></div>
-          Delete
+          <!-- Delete -->
         </button>
         <button v-show="!editing" class="btn btn-small btn-blue-text right" @click="edit">
           <span class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
@@ -62,7 +62,7 @@
         <button v-show="editing" class="btn btn-small btn-blue-text right" @click="update">
           <span v-show="!saving" class="oi oi-l" data-glyph="pencil" aria-hidden="true"></span>
           <div v-show="saving" class="loader"></div>
-          Save edits
+          Save
         </button>
       </div>
     </div>
@@ -72,7 +72,7 @@
   </div>
   <div v-show="noListing" class="listing-view view max-width">
     <div class="no-listing">
-      Listing not found, it may have been deleted by its owner, or archived if over 6 months old.
+      Listing not found. It may have been deleted by its owner, or archived if over 6 months old.
     </div>
   </div>
 </template>

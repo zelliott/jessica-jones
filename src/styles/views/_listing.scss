@@ -8,12 +8,15 @@
   .listing-title {
     font-size: 20px;
     font-weight: 500;
+    word-wrap: break-word;
   }
 
   .listing-description {
     color: #999;
     font-size: 15px;
+    line-height: 22px;
     white-space: pre-line;
+    word-wrap: break-word;
   }
 
   .listing-info {
@@ -34,6 +37,31 @@
   .listing-actions {
     button.right {
       margin-left: 20px;
+    }
+
+    // All of this is needed for mobile compatibility.
+
+    .btn-red-text {
+      &:after {
+        content: 'Delete'
+      }
+    }
+
+    @media (max-width: $mobile-site-width) {
+      .btn-red-text {
+
+        .oi-l {
+          margin-right: 0 !important;
+        }
+
+        .loader {
+          margin-right: 0 !important;
+        }
+
+        &:after {
+          content: ''
+        }
+      }
     }
   }
 
@@ -67,6 +95,21 @@
     input,
     textarea {
       width: 600px;
+    }
+
+    @media (max-width: $site-width) {
+      .form-warning {
+        max-width: calc(100% - 20px);
+      }
+
+      input,
+      textarea {
+        max-width: calc(100% - 20px);
+      }
+
+      .checkbox-form-group label {
+        max-width: calc(100% - 67px);
+      }
     }
   }
  }

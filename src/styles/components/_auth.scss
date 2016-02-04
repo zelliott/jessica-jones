@@ -102,3 +102,19 @@
     }
   }
 }
+
+@media (max-width: $site-width) {
+  .auth-form {
+    width: 100%;
+
+    form {
+      position: static;
+      width: 322px;
+      margin: 80px auto 0 auto;
+    }
+  }
+
+  .auth-info {
+    display: none;
+  }
+}

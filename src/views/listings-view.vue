@@ -14,7 +14,7 @@
     </div>
 
     <div class="no-listings" v-show="!loading && listingsCount === 0">
-      No listings.  Post one!
+      No listings to show
     </div>
 
     <div class="listings">
